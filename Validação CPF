@@ -1,0 +1,46 @@
+# Elaborar um programa que solicite a digitação de um número de CPF no formato xxx.xxx.xxx-xx e indique se é um número válido ou inválido através da validação dos dígitos verificadores e dos caracteres de formatação.
+
+# https://dicasdeprogramacao.com.br/algoritmo-para-validar-cpf/
+
+cpf = input("Digite os números do CPF: ")
+a=0
+b=10
+c=11
+soma1=0
+soma2=0
+lista=[]
+for x in list(cpf):
+  lista.append(x)
+lista.pop(3)
+lista.pop(6)
+lista.pop(9)
+print(lista) 
+
+for x in lista:
+  if lista[0] == lista[1] and lista[1] == lista[2] and lista[2] == lista[3] and lista[3] == lista[4] and lista[4] == lista[5] and lista[5] == lista[6] and lista[6] == lista[7] and lista[7] == lista[8] and lista[8] == lista[9] and lista[9] == lista[10]:
+    print ("CPF inválido!!")
+    break
+  elif a<=8:
+    mult1 = int(lista[a])*b
+    a+=1
+    b-=1
+    soma1 += mult1 
+print(f"Primeira soma: {soma1}")
+valid1 = (soma1*10)%11
+print(f"Primeira validação: {valid1}")
+print(f"Penúltimo número da lista: {lista[9]}")
+a=0
+for x in lista:
+  if a<=9:
+    mult2 = int(lista[a])*c
+    a+=1
+    c-=1
+    soma2 += mult2
+print(f"Segunda soma: {soma2}")
+valid2 = (soma2*10)%11
+print(f"Segunda validação: {valid2}")
+print(f"Último número da lista: {lista[10]}")
+if valid1 == int(lista[9]) and valid2 == int(lista[10]):
+  print("A validação foi concluida com sucesso!")
+else:
+  print("CPF inválido!")
